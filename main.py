@@ -7,8 +7,8 @@ global var
 global labels
 global flag
 
-stack = {"eax": 0, "ax": 0, "al": 0, "ah": 0, "edx": 0, "dx": 0, "dh": 0, "dl": 0}
-reg = {"eax": 0, "ax": 0, "al": 0, "ah": 0, "edx": 0, "dx": 0, "dh": 0, "dl": 0}
+stack = {"eax": 0, "ax": 0, "ah": 0, "al": 0, "edx": 0, "dx": 0, "dh": 0, "dl": 0, "ebx": 0, "bx": 0, "bh": 0, "bl": 0}
+reg = {"eax": 0, "ax": 0, "ah": 0, "al": 0, "edx": 0, "dx": 0, "dh": 0, "dl": 0, "ebx": 0, "bx": 0, "bh": 0, "bl": 0}
 
 flag = 1
 labels = {}
@@ -127,8 +127,11 @@ def parse(cmd):
                 try:
                     reg[args[1]] = hex(int(args[2], 16))
                 except ValueError:
-                    word = args[2][1:]
-                    reg[args[1]] = [hex(ord(character)) for character in word[:-1]]
+                    args.pop(0)
+                    args = " ".join(args)
+                    args = args.split('"')
+                    word = args[1]
+                    reg[args[0][:-1]] = [hex(ord(character)) for character in word]
         elif isvar(args[1]):
             if isreg(args[2]):
                 var[args[1]] = reg.get(args[2])
@@ -138,8 +141,11 @@ def parse(cmd):
                 try:
                     var[args[1]] = hex(int(args[2], 16))
                 except ValueError:
-                    word = args[2][1:]
-                    var[args[1]] = [hex(ord(character)) for character in word[:-1]]
+                    args.pop(0)
+                    args = "".join(args)
+                    args = args.split('"')
+                    word = args[1]
+                    var[args[0][:-1]] = [hex(ord(character)) for character in word]
         else:
             print(f"{args[1]} is not a valid register or variable.")
 
@@ -226,7 +232,8 @@ def parse(cmd):
                 try:
                     var[args[0]] = hex(int(args[2], 16))
                 except ValueError:
-                    var[args[0]] = [hex(ord(character)) for character in args[2]]
+                    word = args[2][1:]
+                    var[args[0]] = [hex(ord(character)) for character in word[:-1]]
 
         else:
             print(f"'{args[0]}' is not a recognised instruction.")

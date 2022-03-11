@@ -20,6 +20,11 @@ REGISTERS:
         DL - General Purpose Data Register
         DH - General Purpose Data Register
 
+    EBX - General Purpose Registers
+        BX - General Purpose Register
+        BL - General Purpose Register
+        BH - General Purpose Register
+
 SYNTAX:
     
     To set a variable:
