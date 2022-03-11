@@ -28,9 +28,9 @@ SYNTAX:
 
     To set a process: 
     
-    def label
-    <code>
-    end
+    <label>:
+        <code>
+        ret
 
     section .code               - Marks the start of the executable code. Processes should be created BEFORE this line.
     
@@ -56,7 +56,7 @@ SYNTAX:
 
     outc                        - Output the ASCII character stored in EDX (eg: 0x48 = "H")
 
-    end                         - Ends the process it is in.
+    ret                         - Ends the process it is in.
     
     cmp <arg_1> <arg_2>         - Sets the flag according to the equality of arg_1 and arg_2
     

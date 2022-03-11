@@ -235,7 +235,8 @@ def parse(cmd):
 def get_lines(lines, i):
     to_return = []
     for x in range(i+1, len(lines)):
-        if lines[x].startswith("end"):
+        lines[x] = lines[x].lstrip(' ')
+        if lines[x].startswith("ret"):
             return to_return
         else:
             to_return.append(lines[x])
@@ -263,7 +264,7 @@ while True:
     print()
 
     for i in range(len(lines)):
-        if not lines[i].startswith("def "):
+        if not lines[i].endswith(":"):
             if not start_flag:
                 args = lines[i].split(" ")
                 if args[0] == "section" and args[1] == ".code":
@@ -274,7 +275,7 @@ while True:
 
             parse(lines[i])
         else:
-            lines[i] = lines[i][4:]
+            lines[i] = lines[i][:-1]
             labels[lines[i]] = get_lines(lines, i)
             i += len(labels.get(lines[i]))
 
