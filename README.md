@@ -28,7 +28,7 @@ SYNTAX:
 
     To set a process: 
     
-    _label
+    def label
     <code>
     end
 
