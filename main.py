@@ -232,8 +232,11 @@ def parse(cmd):
                 try:
                     var[args[0]] = hex(int(args[2], 16))
                 except ValueError:
-                    word = args[2][1:]
-                    var[args[0]] = [hex(ord(character)) for character in word[:-1]]
+                    args.pop(1)
+                    args = " ".join(args)
+                    args = args.split('"')
+                    word = args[1]
+                    reg[args[0][:-1]] = [hex(ord(character)) for character in word]
 
         else:
             print(f"'{args[0]}' is not a recognised instruction.")

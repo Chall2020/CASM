@@ -2,7 +2,7 @@
 
 ; start will be called at the top of the .code section
 start:
-    mov dx "Hello world!"
+    mov dx "Hello"
     mov ah dx
     outc
 
