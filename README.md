@@ -57,3 +57,13 @@ SYNTAX:
     outc                        - Output the ASCII character stored in EDX (eg: 0x48 = "H")
 
     end                         - Ends the process it is in.
+    
+    cmp <arg_1> <arg_2>         - Sets the flag according to the equality of arg_1 and arg_2
+    
+    ce <label>                  - Calls the specified process if the flag is True.
+    
+    cne <lable>                 - Calls the specified process if the flag is galse
+    
+    inc <register/variable>     - Increments the specified register/variable
+    
+    dec <register/variable>     - Decrements the specified register/variable
